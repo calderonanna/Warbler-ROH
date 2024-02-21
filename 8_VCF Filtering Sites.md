@@ -125,8 +125,9 @@ nano filterExHet_cit.bash
 bcftools view -e 'COUNT(GT="het")>=4' ~/SzpiechLab/abc6435/WarblerROH/vcf/citrina.vcf.gz -Oz -o ~/SzpiechLab/abc6435/WarblerROH/vcf/citrina_ExHet.vcf.gz
 --------------------------------------------------END OF FILE---------------------------------------------
 qsub filterExHet_cit.bash
+```
 
-
+```bash
 nano filterExHet_kirt.bash
 ------------------------------------------------------NANO------------------------------------------------
 #!/bin/bash
@@ -140,8 +141,9 @@ nano filterExHet_kirt.bash
 bcftools view -e 'COUNT(GT="het")>=6' ~/SzpiechLab/abc6435/WarblerROH/vcf/kirtlandii.vcf.gz -Oz -o ~/SzpiechLab/abc6435/WarblerROH/vcf/kirtlandii_ExHet.vcf.gz
 --------------------------------------------------END OF FILE---------------------------------------------
 qsub filterExHet_kirt.bash
+```
 
-
+```bash
 #Execute Filter
 nano filterExHet_rut.bash
 ------------------------------------------------------NANO------------------------------------------------
