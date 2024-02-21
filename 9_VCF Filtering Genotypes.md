@@ -38,6 +38,7 @@ quantile(cit_dp$cTE30T02, probs = c(0.05, 0.95))
 quantile(cit_dp$cSE25T02, probs = c(0.05, 0.95))
 
 #MAX DP: 34
+#MIN DP: 6
 ```
 
 ### Filtering individual genotypes based on DP thresholds
