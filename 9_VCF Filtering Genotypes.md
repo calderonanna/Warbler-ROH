@@ -1,11 +1,7 @@
 # VCF Filtering Genotypes
 
 ## Filter 1: Supporting Reads
-
-Filter 1: All genotypes required a minimum of 6 supporting reads in accordance with Robin et al. 2016, and a maximum of 34 supporting reads. Maximum supporting reads were based on the highest 95th percentile value of all samples. 
-
-### Calculating DP thresholds per sample
-The python script I will be using to calculate the DP thresholds is 
+All genotypes required a minimum of 6 supporting reads in accordance with Robinson et al. 2016, and a maximum of 34 supporting reads. Maximum supporting reads were based on the highest 95th percentile value of all samples. To calculate DP thresholds per sample, I used a pre-made python script.
 
 ```bash
 nano Calculate_DP.bash
@@ -24,15 +20,12 @@ python extractDP.py kirtlandii_ExHet.vcf.gz > /storage/home/abc6435/work/kirtlan
 python extractDP.py ruticilla_ExHet.vcf.gz > /storage/home/abc6435/work/ruticilla_DP.txt
 
 ------------------------------------------------------END------------------------------------------------
-
-rsync abc6435@submit.aci.ics.psu.edu:/storage/home/abc6435/work/citrina_DP.txt /Users/abc6435/Desktop/WROH/data
-
-rsync abc6435@submit.aci.ics.psu.edu:/storage/home/abc6435/work/kirtlandii_DP.txt /Users/abc6435/Desktop/WROH/data
-
-rsync abc6435@submit.aci.ics.psu.edu:/storage/home/abc6435/work/ruticilla_DP.txt /Users/abc6435/Desktop/WROH/data
+qsub Calculate_DP.bash
 ```
+
+### In R Studio
+Calculate DP Thresholds in R for the three species
 ```r
-#Calculate DP Thresholds in R for the three species
 cit_dp <- as.data.frame(read.table("/Users/abc6435/Desktop/citrina_DP.txt"))
 cit_dp <- rename(cit_dp, POS=POS, c262=V5, c2871=V6, c104049=V7, 
        c107057=V8, cTE22T01=V9, cTE30T02=V10, cSE25T02=V11)
@@ -46,12 +39,9 @@ quantile(cit_dp$cSE25T02, probs = c(0.05, 0.95))
 
 #MAX DP: 34
 ```
+
 ### Filtering individual genotypes based on DP thresholds
 ```bash 
-#test(pass)
-bcftools filter test_citrina_ExHet.vcf -e 'FMT/DP<6 | FMT/DP>34' -S .  -Oz -o test_citrina_gtDP.vcf.gz
-
-#Execute Filter
 nano genotype_DP.bash
 ------------------------------------------------------NANO------------------------------------------------
 #!/bin/bash
