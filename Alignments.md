@@ -40,9 +40,6 @@ We will be using bowtie2 with a loop to align our reads to the Myrtle Warbler re
 #The alignment above would be invalid because the gap is at 30 and exceeds -X 20. 
 ```
 
-
-Note: When doing alignments for WGS, they will require a-lot of memory between 200-400gb, so be sure to request this much in the pbs script, otherwise, the alignments may not be done properly. Another thing, do not send the alignment pipeline through parallel. Each sample requires 4 nodes, so parallel will quickly eat up all the available nodes and memory. Write a script for each sample and send the scripts independently so the cluster can allocate the appropriate resources to each sample without maxing out. 
-
 ## Alignment Scripts Batch 1
 ```bash
 #Create an alignment script for samples in batch 1
@@ -59,6 +56,3 @@ for i in `cat ~/SzpiechLab/abc6435/Scripts/warblerID_batch1.txt`; do echo "
 #Submit each alignmentscript to the queue
 for i in `cat ~/SzpiechLab/abc6435/Scripts/warblerID_batch1.txt`; do qsub /storage/home/abc6435/SzpiechLab/abc6435/WarblerROH/${i}/${i}_align.bash; done
 ```
-
-### Manuscript Methods
-We aligned all read data to the Myrtle Warbler (Setophaga coronata coronata) reference genome (Baiz et al. 2021) using the tool BowTie2 (Langmead and Salzberg 2012) with the following parameters: "very-sensitive-local" and "-X", the maximum gap length for valid paired-end alignments, to 700bp. 
