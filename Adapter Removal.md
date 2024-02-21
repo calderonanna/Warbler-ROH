@@ -7,7 +7,7 @@ AdapterRemoval --file1 INPUT_R1.fastq --file2 INPUT_R2.fastq --file2 --collapse 
 ```
 				ADAPTER1-------------------150bp----------------->
 				ADAPTER1====================***********************==================ADAPTER2
-									        <----------------------150bp-------------ADAPTER2
+                                                            <----------------------150bp-------------ADAPTER2
 ```
 **--trimns**: trims any base that was called as 'N'.
 **--minlength 20**: Filters out any reads less than 20bp
