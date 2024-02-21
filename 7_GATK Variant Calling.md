@@ -1,10 +1,11 @@
 
 # Genomic Analysis Tool Kit (GATK)
-### Variant Calling with GATK: UCLA QCBio Workshop Notes
-##### https://www.youtube.com/watch?v=hRsjy1Z8QDA
-##### https://gatk.broadinstitute.org/ 
-##### https://sites.google.com/a/broadinstitute.org/legacy-gatk-forum-discussions/methods-and-algorithms/4148-HC-overview-How-the-HaplotypeCaller-works
-##### https://github.com/broadinstitute/gatk-docs/blob/master/gatk3-faqs/What_is_a_GVCF_and_how_is_it_different_from_a_'regular'_VCF%3F.md#:~:text=The%20key%20difference%20between%20a,a%20cohort%20in%20subsequent%20steps.
+Variant Calling with GATK useful links:
+https://www.youtube.com/watch?v=hRsjy1Z8QDA
+https://gatk.broadinstitute.org/ 
+https://sites.google.com/a/broadinstitute.org/legacy-gatk-forum-discussions/methods-and-algorithms/4148-HC-overview-How-the-HaplotypeCaller-works
+https://github.com/broadinstitute/gatk-docs/blob/master/gatk3-faqs/What_is_a_GVCF_and_how_is_it_different_from_a_'regular'_VCF%3F.md#:~:text=The%20key%20difference%20between%20a,a%20cohort%20in%20subsequent%20steps.
+
 In this step we will use GATK to call genotypes on all positions and produce a GVCF file. To do this we will use the program HaplotypeCaller. The program will look at the bam file and identify regions that vary using sliding windows. It will determine plausible haplotypes, determine per-read likelihood haplotypes, and assign each sample with genotypes, likelihood, and annotations. 
 ![Source: Broad Institute](https://us.v-cdn.net/5019796/uploads/FileUpload/a4/5ac06fc8af4b1b0c474f03e45f9017.png)
 
@@ -12,11 +13,17 @@ In this step we will use GATK to call genotypes on all positions and produce a G
 `gatk --java-options -Xmx4G HaplotypeCaller -R reference.fasta -I sample.bam -O sample.g.vcf.gz -bamout sample.out.bam -ERC GVCF`
 
 **-Xmx**: Specify Java memory argument
+
 **-R**: Specify the reference genome (*.fasta)
+
 **-I**: Specify BAM Input (*.bam)
+
 **-O**: Specify the output file name (*.g.vcf)
+
 **-ERC GVCF**: Use GVCF as output: https://gatk.broadinstitute.org/hc/en-us/articles/360035531812-GVCF-Genomic-Variant-Call-Format#:~:text=The%20two%20types%20of%20GVCFs,or%20a%20non%2Dvariant%20record.
-**-bamout**: Specify the reassembled bam file name. HaplotypeCaller performs a local reassembly and realignment of the reads in the region surrounding a potential variant. During the calling process, reads get moved to different mapping positions that what the original BAM files describe. -bamout flag enables you to visualize what rearrangements the tool has made.  
+
+**-bamout**: Specify the reassembled bam file name. HaplotypeCaller performs a local reassembly and realignment of the reads in the region surrounding a potential variant. During the calling process, reads get moved to different mapping positions that what the original BAM files describe. -bamout flag enables you to visualize what rearrangements the tool has made.
+
 **-L #**: Specify interval, if any (eg. -L 20). In other words, if you're only calling variants for a specific chromosome, you need to specify what chromosome it is. In this example, they are only looking to call variants on chromosome 20, so -L 20. If looking at all chromosomes, do not specify. 
 
 ## SNP Calling Script
