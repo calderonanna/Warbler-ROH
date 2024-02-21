@@ -111,6 +111,7 @@ qsub subsetsp.bash
 ## Filter5: Excess Heterozygosity
 For ruticilla and kirtlandii, each with a n=7, sites with excess heterozygosity were defined as sites with 6 or more heterozygote genotypes and were excluded. For citrina (n=5), excess heterosygosity was defined as sites with 4 or more heterozygote genotypes and were excluded. 
 
+Citrina
 ```bash
 nano filterExHet_cit.bash
 ------------------------------------------------------NANO------------------------------------------------
@@ -127,6 +128,7 @@ bcftools view -e 'COUNT(GT="het")>=4' ~/SzpiechLab/abc6435/WarblerROH/vcf/citrin
 qsub filterExHet_cit.bash
 ```
 
+Kirtlandii
 ```bash
 nano filterExHet_kirt.bash
 ------------------------------------------------------NANO------------------------------------------------
@@ -143,6 +145,7 @@ bcftools view -e 'COUNT(GT="het")>=6' ~/SzpiechLab/abc6435/WarblerROH/vcf/kirtla
 qsub filterExHet_kirt.bash
 ```
 
+Ruticilla
 ```bash
 #Execute Filter
 nano filterExHet_rut.bash
