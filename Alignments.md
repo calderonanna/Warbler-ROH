@@ -26,6 +26,9 @@ We will be using bowtie2 with a loop to align our reads to the Myrtle Warbler re
 **-2**: file containing mate 2 reads
 
 **-U**: comma-separated list of files containing unpaired reads to be aligned
+**-S**: the output alignment in SAM format. 
+
+**>&**: the pathway for where to store log output for the alignment
 
 **-X**: The maximum gap length for valid paired-end alignments.  
 	- For example in -X 20, if the gap between R1 and R2 exceeds 20, those alignments are not valid. If the 		gap between R1 and R2 is less than 20, that's acceptable. 
@@ -36,8 +39,6 @@ We will be using bowtie2 with a loop to align our reads to the Myrtle Warbler re
 #The alignment above would be invalid because the gap is at 30 and exceeds -X 20. 
 ```
 
-**-S**: the output alignment in SAM format. 
-**>&**: the pathway for where to store log output for the alignment
 
 Note: When doing alignments for WGS, they will require a-lot of memory between 200-400gb, so be sure to request this much in the pbs script, otherwise, the alignments may not be done properly. Another thing, do not send the alignment pipeline through parallel. Each sample requires 4 nodes, so parallel will quickly eat up all the available nodes and memory. Write a script for each sample and send the scripts independently so the cluster can allocate the appropriate resources to each sample without maxing out. 
 
