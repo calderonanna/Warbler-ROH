@@ -1,4 +1,4 @@
-### Index Marked BAM files
+# Index Marked BAM files
 Create an indexing script for each of the 21 samples.
 ```bash
 for i in `cat ~/SzpiechLab/abc6435/Scripts/warbler_id_list.txt`; do echo "
