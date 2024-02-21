@@ -2,7 +2,7 @@
 We will be using bowtie2 with a loop to align our reads to the Myrtle Warbler reference genome following the format below:
 
 ```bash
-<filepath/bowtie2> -p <#threads> \ --very-sensitive-local --local -N 0 --phred33 \ -x <reference_genome_filepath> \ --rg-id <sample_ID_tag> --rg SM:<sample_ID_tag> \ -1 <filepath_reads_1.fastq> -2 <filepath_reads_2.fastq> -S <filepath/output.sam> \ >& <filepath/output.log>
+filepath/bowtie2 -p #threads \ --very-sensitive-local --local -N 0 --phred33 \ -x reference_genome_filepath \ --rg-id sample_ID_tag --rg SM:sample_ID_tag \ -1 filepath_reads_1.fastq -2 filepath_reads_2.fastq -S filepath/output.sam \ >& filepath/output.log
 ```
 
 **-p** : If your computer has multiple processors/cores specify the number; the default=1.
