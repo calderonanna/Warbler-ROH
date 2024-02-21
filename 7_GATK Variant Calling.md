@@ -43,7 +43,6 @@ java -Xmx500g -jar /storage/work/dut374/bin/GenomeAnalysisTK-3.8/GenomeAnalysisT
 ## ZIP GVCF files
 `nohup bgzip sample.g.vcf`
 ```bash
-qsub -A zps5164_a_g_hc_default -l feature=rhel7 -l walltime=30:00:00 -l nodes=1:ppn=1 -l mem=500gb -I
 qsub -A wff3_a_g_hc_default -l feature=rhel7 -l walltime=30:00:00 -l nodes=1:ppn=20 -l mem=200gb -I
 
 nohup bgzip ~/SzpiechLab/abc6435/WarblerROH/163/163.g.vcf &
