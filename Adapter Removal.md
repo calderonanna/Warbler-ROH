@@ -38,12 +38,3 @@ for  i  in `cat ~/SzpiechLab/abc6435/Scripts/warbler_id_list.txt`; do echo " /st
 qsub WarblerROH_trim.bash
 ```
 
-## Quality Control 
-```bash
-#Check if the paired reads are there and you should also have 21 settings files for each
-for i in `cat ~/SzpiechLab/abc6435/Scripts/warbler_id_list.txt`; do ls -l ~/SzpiechLab/abc6435/WarblerROH/${i}/*pair*; done | wc -l
-
-for i in `cat ~/SzpiechLab/abc6435/Scripts/warbler_id_list.txt`; do ls -l ~/SzpiechLab/abc6435/WarblerROH/${i}/*settings; done | wc -l
-```
-
-
