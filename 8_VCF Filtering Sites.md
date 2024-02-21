@@ -16,22 +16,15 @@ nano bgzip_seto.bash
 #PBS -A wff3_a_g_hc_default
 bgzip -c ~/SzpiechLab/abc6435/WarblerROH/Setophaga.vcf > ~/SzpiechLab/abc6435/WarblerROH/Setophaga.vcf.gz
 --------------------------------------------------END OF FILE---------------------------------------------
-bcftools index Setophaga.vcf.gz
+qsub bgzip_seto.bash
 
-#Count Number of Sites
-zcat Setophaga.vcf.gz | cut -f 1 | grep -v '^#' | wc -l
-#Output: 90715651
+bcftools index Setophaga.vcf.gz
 ```
 
 ## Filter 1: Read Depth
 Filter 1: Sites with **combined** read depth across individuals less than 255 or greater than 401 were filtered out (these values correspond to 5th and 95th percentiles for total depth of our samples, respectively)
-```bash
-#test (pass)
-qsub -A zps5164_a_g_hc_default -l feature=rhel7 -l walltime=10:00:00 -l nodes=1:ppn=1 -l mem=100gb -I
-zcat Setophaga.vcf.gz | head -2300 > test.vcf
-bcftools view -e 'SUM(FMT/DP)<255 | SUM(FMT/DP)>401' test.vcf -Oz -o test_DP.vcf.gz
 
-#Execute Filter
+```bash
 nano filterDP.bash
 ------------------------------------------------------NANO------------------------------------------------
 #!/bin/bash
@@ -42,18 +35,11 @@ nano filterDP.bash
 #PBS -A wff3_a_g_hc_default
 bcftools view -e 'SUM(FMT/DP)<255 | SUM(FMT/DP)>401' ~/SzpiechLab/abc6435/WarblerROH/vcf/Setophaga.vcf.gz -Oz -o ~/SzpiechLab/abc6435/WarblerROH/vcf/Setophaga_DP.vcf.gz
 --------------------------------------------------END OF FILE---------------------------------------------
-
-#Count Number of Sites
-bcftools view --no-header Setophaga_DP.vcf.gz | grep 'chr' | wc -l
-#Output: 
+qsub filterDP.bash
 ```
+
 ## Filter2: Site Quality 
 ```bash
-#test (pass)
-qsub -A zps5164_a_g_hc_default -l feature=rhel7 -l walltime=10:00:00 -l nodes=1:ppn=1 -l mem=100gb -I
-bcftools view -i '%QUAL>=50' test_DP.vcf.gz -Oz -o test_QUAL.vcf.gz
-
-#Execute Filter
 nano filterQUAL.bash
 ------------------------------------------------------NANO------------------------------------------------
 #!/bin/bash
@@ -64,22 +50,16 @@ nano filterQUAL.bash
 #PBS -A wff3_a_g_hc_default
 bcftools view -i '%QUAL>=50' ~/SzpiechLab/abc6435/WarblerROH/vcf/Setophaga_DP.vcf.gz -Oz -o ~/SzpiechLab/abc6435/WarblerROH/vcf/Setophaga_QUAL.vcf.gz
 --------------------------------------------------END OF FILE---------------------------------------------
+qsub filterQUAL.bash
 ```
 
 ## Filter3: ADF/ADR (Skipped)
- Sites required at least 2 of the same alternate allele observations on each of the forward and reverse strands.  Note: My vcf file doesn't have this  informations in the header so, I'm skipping this for now. I will have to go back to HaplotypeCaller Step to specify that I want the forward and reverse allele depth annotation. 
-```bash
-#test (fail)
-bcftools view -i 'FMT/AD[*:0] > 1 && FMT/AD[*:1] > 1' test_QUAL.vcf.gz -Oz -o test_ADR_ADF.vcf.gz 
-```
+Sites required at least 2 of the same alternate allele observations on each of the forward and reverse strands.  Note: My vcf file doesn't have this information in the header. 
 
 ## Filter4: Biallelic Sites
 Multi-nucleotide polymorphisms, indels, complex variants, and sites with more than one alternate allele were excluded, as were sites with more than two missing genotypes. (See https://www.biostars.org/p/141156/)
-```bash
-#test (pass)
-bcftools view -m2 -M2 -v snps test_QUAL.vcf.gz -Oz -o test_biallelic.vcf.gz
 
-#Execute Filter
+```bash
 nano filterbiallelic.bash
 ------------------------------------------------------NANO------------------------------------------------
 #!/bin/bash
@@ -90,6 +70,7 @@ nano filterbiallelic.bash
 #PBS -A wff3_a_g_hc_default
 bcftools view -m2 -M2 -v snps ~/SzpiechLab/abc6435/WarblerROH/vcf/Setophaga_QUAL.vcf.gz -Oz -o ~/SzpiechLab/abc6435/WarblerROH/vcf/Setophaga_biallelic.vcf.gz 
 --------------------------------------------------END OF FILE---------------------------------------------
+qsub filterbiallelic.bash
 
 ```
 ## Sanity Check
@@ -103,16 +84,9 @@ bcftools stats Setophaga_QUAL.vcf.gz > Setophaga_QUAL_stats.txt
 bcftools stats Setophaga_biallelic.vcf.gz > Setophaga_biallelic_stats.txt
 
 ```
-## Filter5: Excess Heterozygosity
-Finally, sites with excess heterozygosity per species, defined as sites with six or more heterozygote genotypes called out of the seven individuals (7 individuals per species), were excluded.  
-
+  
+## Subset species 
 ```bash
-#test (pass, pass)
-#Subset the VCF by species-S.citrina
-bcftools view -s 262,2871,TE22T01,TE30T02,SE25T02 test_biallelic.vcf.gz -Oz -o citrina.vcf.gz
-bcftools view -e 'COUNT(GT="het")>=6' citrina.vcf.gz -Oz -o citrina_ExHet.vcf.gz
-
-#Subset species 
 nano subsetsp.bash
 ------------------------------------------------------NANO------------------------------------------------
 #!/bin/bash
@@ -131,9 +105,13 @@ bcftools view -s 183195332,183194861,183195321,183195304,183194841,183195326,183
 #Subset by ruticilla samples
 bcftools view -s 163,1049,1940,4056,284029323,TF19T04,TF03T03 ~/SzpiechLab/abc6435/WarblerROH/vcf/Setophaga/Setophaga_biallelic.vcf.gz -Oz -o ~/SzpiechLab/abc6435/WarblerROH/vcf/ruticilla.vcf.gz
 --------------------------------------------------END OF FILE---------------------------------------------
+qsub subsetsp.bash
+```
 
+## Filter5: Excess Heterozygosity
+For ruticilla and kirtlandii, each with a n=7, sites with excess heterozygosity were defined as sites with 6 or more heterozygote genotypes and were excluded. For citrina (n=5), excess heterosygosity was defined as sites with 4 or more heterozygote genotypes and were excluded. 
 
-#Execute Filter
+```bash
 nano filterExHet_cit.bash
 ------------------------------------------------------NANO------------------------------------------------
 #!/bin/bash
@@ -148,7 +126,7 @@ bcftools view -e 'COUNT(GT="het")>=4' ~/SzpiechLab/abc6435/WarblerROH/vcf/citrin
 --------------------------------------------------END OF FILE---------------------------------------------
 qsub filterExHet_cit.bash
 
-#Execute Filter
+
 nano filterExHet_kirt.bash
 ------------------------------------------------------NANO------------------------------------------------
 #!/bin/bash
