@@ -1,9 +1,11 @@
 
 # Sorting BAM files
-When you align FASTQ files with all current sequence aligners, the alignments produced are in random order with respect to their position in the reference genome. In other words, the BAM file is in the order that the sequences occurred in the input FASTQ files. Doing anything meaningful such as calling variants or visualizing alignments in IGV) requires that the BAM is further manipulated. It must be sorted such that the alignments occur in “genome order”. That is, ordered positionally based upon their alignment coordinates on each chromosome.
+When you align FASTQ files with all current sequence aligners, the alignments produced are in random order with respect to their position in the reference genome. In other words, the BAM file is in the order that the sequences occurred in the input FASTQ files. Doing anything meaningful such as calling variants or visualizing alignments in IGV requires that the BAM is "organized". It must be sorted such that the alignments occur in “genome order”. That is, ordered positionally based upon their alignment coordinates on each chromosome. As I did previously, I split my samples into two groups to speed things up. 
 
 `samtools sort sample.sam -T sample_temp.bam -o sample_sorted.bam`
+
 **-T**: Write temporary files
+
 **-o**: Write the final sorted output to the specified file (sample_sorted.bam), rather than to standard output.
 
 ## Sort Batch1 
