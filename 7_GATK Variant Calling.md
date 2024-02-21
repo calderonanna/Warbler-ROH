@@ -94,13 +94,10 @@ nohup tabix ~/SzpiechLab/abc6435/WarblerROH/183195326/183195326.g.vcf.gz &
 nohup tabix ~/SzpiechLab/abc6435/WarblerROH/183195312/183195312.g.vcf.gz &
 ```
 ## Calling SNPS across all GVCFs
-Note to self: I will need to come back to this step to include the DP4(ADF and ADR) flag. For now, I will skip including this flag because of time constraints. 
 
 `java -Xmx500g -jar /storage/work/dut374/bin/GenomeAnalysisTK-3.8/GenomeAnalysisTK.jar -T GenotypeGVCFs -R reference.fa -nt 40 -V sample1.g.vcf.gz -V sample2.g.vcf.gz -o filename.vcf >& filename.log`
 
 ```bash
-qsub -A wff3_a_g_hc_default -l feature=rhel7 -l walltime=30:00:00 -l nodes=1:ppn=40 -l mem=500gb -I
-
 #!/bin/bash
 #PBS -l feature=rhel7
 #PBS -l nodes=1:ppn=40
