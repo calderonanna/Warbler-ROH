@@ -27,7 +27,8 @@ https://github.com/broadinstitute/gatk-docs/blob/master/gatk3-faqs/What_is_a_GVC
 **-L #**: Specify interval, if any (eg. -L 20). In other words, if you're only calling variants for a specific chromosome, you need to specify what chromosome it is. In this example, they are only looking to call variants on chromosome 20, so -L 20. If looking at all chromosomes, do not specify. 
 
 ## SNP Calling Script
-Create SNP Calling script for each of the 21 samples.
+Create SNP Calling script for each of the 21 samples. Note: I believe the -Xmx has to be the same as the mem. So mine is -Xmx500g, therefore #PBS -l mem=500gb. I gave it a ton of memory just to be on the safe side. Also, I think the -nct number also has to match ppn. For example, -nct 40 and therfore my #PBS -l nodes=1:ppn=40
+
 ```bash
 for i in `cat ~/SzpiechLab/abc6435/Scripts/warbler_id_list.txt`; do echo "
 #!/bin/bash
