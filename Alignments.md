@@ -5,19 +5,28 @@ We will be using bowtie2 with a loop to align our reads to the Myrtle Warbler re
 <filepath/bowtie2> -p <#threads> \ --very-sensitive-local --local -N 0 --phred33 \ -x <reference_genome_filepath> \ --rg-id <sample_ID_tag> --rg SM:<sample_ID_tag> \ -1 <filepath_reads_1.fastq> -2 <filepath_reads_2.fastq> -S <filepath/output.sam> \ >& <filepath/output.log>
 ```
 
- - **-p** : If your computer has multiple processors/cores specify the number; the default=1. 
+ - **-p** : If your computer has multiple processors/cores specify the number; the default=1.
+   
 **--very-sensitive -local**: Same as -D 20 -R 3 -N 0 -L 20 -i S,1,0.50
    
 **--local**: characters may be omitted ("soft clipped") from the ends to achieve the greatest possible alignment score.
 
 **--N**: Sets the number of mismatches to allowed in a seed alignment during multiseed alignment. Default=0, increasing it slows down the alignment but increases sensitivity. 
+
 **--phred33**: Input qualities are ASCII chars equal to the Phred+33 encoding (used by Illumina pipelines).
+
 **-x**: Filepath to the indexed reference genome
+
 **--rg-id**: This causes the SAM @RG header line to be printed, with <text> as the value associated with the ID: tag
+
 **--rg SM:**: Add <text> as a field on the @RG header line. In order for the @RG line to appear, --rg-id must be specified.
+
 **-1**: file containing mate 1 reads
+
 **-2**: file containing mate 2 reads
+
 **-U**: comma-separated list of files containing unpaired reads to be aligned
+
 **-X**: The maximum gap length for valid paired-end alignments.  
 	- For example in -X 20, if the gap between R1 and R2 exceeds 20, those alignments are not valid. If the 		gap between R1 and R2 is less than 20, that's acceptable. 
  ```bash
