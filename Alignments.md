@@ -7,7 +7,9 @@ We will be using bowtie2 with a loop to align our reads to the Myrtle Warbler re
 
  - **-p** : If your computer has multiple processors/cores specify the number; the default=1. 
 **--very-sensitive -local**: Same as -D 20 -R 3 -N 0 -L 20 -i S,1,0.50
+   
 **--local**: characters may be omitted ("soft clipped") from the ends to achieve the greatest possible alignment score.
+
 **--N**: Sets the number of mismatches to allowed in a seed alignment during multiseed alignment. Default=0, increasing it slows down the alignment but increases sensitivity. 
 **--phred33**: Input qualities are ASCII chars equal to the Phred+33 encoding (used by Illumina pipelines).
 **-x**: Filepath to the indexed reference genome
