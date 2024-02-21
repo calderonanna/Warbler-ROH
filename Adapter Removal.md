@@ -1,4 +1,4 @@
-# Adapter Removal Pipeline
+#Adapter Removal Pipeline
 Using the AdapterRemoval program, we will remove  the adapters at the ends of our reads. The adapters are added to our DNA so that polymerase has a scaffold to start transcription during the PCR step. After transcription, our reads also get the transcribed adapters. But, we don't actually need the adapters and they need to be removed so we can preform our alignments later. To remove them, I employ a loop to go through each of our R1.fastq.gz and R2.fastq.gz files, and then apply the adapter removal tool. Below is a backbone of what needs to be included in the adapter removal command.
 ```bash
 AdapterRemoval --file1 INPUT_R1.fastq --file2 INPUT_R2.fastq --file2 --collapse --trimns --minlength 20 --qualitybase 33 --basename filepath/OUTPUT_trim
