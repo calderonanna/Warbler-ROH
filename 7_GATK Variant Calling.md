@@ -1,13 +1,13 @@
 
 # Genomic Analysis Tool Kit (GATK)
+In this step we will use GATK to call genotypes on all positions and produce a GVCF file. To do this we will use the program HaplotypeCaller. The program will look at the bam file and identify regions that vary using sliding windows. It will determine plausible haplotypes, determine per-read likelihood haplotypes, and assign each sample with genotypes, likelihood, and annotations. 
+![Source: Broad Institute](https://us.v-cdn.net/5019796/uploads/FileUpload/a4/5ac06fc8af4b1b0c474f03e45f9017.png)
+
 Variant Calling with GATK useful links:
 https://www.youtube.com/watch?v=hRsjy1Z8QDA
 https://gatk.broadinstitute.org/ 
 https://sites.google.com/a/broadinstitute.org/legacy-gatk-forum-discussions/methods-and-algorithms/4148-HC-overview-How-the-HaplotypeCaller-works
 https://github.com/broadinstitute/gatk-docs/blob/master/gatk3-faqs/What_is_a_GVCF_and_how_is_it_different_from_a_'regular'_VCF%3F.md#:~:text=The%20key%20difference%20between%20a,a%20cohort%20in%20subsequent%20steps.
-
-In this step we will use GATK to call genotypes on all positions and produce a GVCF file. To do this we will use the program HaplotypeCaller. The program will look at the bam file and identify regions that vary using sliding windows. It will determine plausible haplotypes, determine per-read likelihood haplotypes, and assign each sample with genotypes, likelihood, and annotations. 
-![Source: Broad Institute](https://us.v-cdn.net/5019796/uploads/FileUpload/a4/5ac06fc8af4b1b0c474f03e45f9017.png)
 
 ## HaplotypeCaller 
 `gatk --java-options -Xmx4G HaplotypeCaller -R reference.fasta -I sample.bam -O sample.g.vcf.gz -bamout sample.out.bam -ERC GVCF`
