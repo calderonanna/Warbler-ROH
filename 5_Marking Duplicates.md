@@ -45,5 +45,3 @@ java -Xmx300g -jar /storage/work/dut374/bin/picard_tools_2.20.8/picard.jar  Mark
 #Submit each of the sort scripts to the queue
 for i in `cat ~/SzpiechLab/abc6435/Scripts/warblerID_batch2.txt`; do qsub ~/SzpiechLab/abc6435/WarblerROH/${i}/${i}_mark.bash; done
 ```
-
-QUESTION: Should I also do this part --> "We quantified  genomic coverage using “qualimap” (Okonechnikov et al. 2016)."
