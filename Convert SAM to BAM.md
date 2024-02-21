@@ -1,11 +1,16 @@
 
 # Convert SAM alignment files to BAM format
-In order to do anything meaningful, we need to convert our SAM files to binary format (BAM). We can accomplish this using SAMTOOLS, which is already pre-installed into the cluster. Specifically, we will use the samtools view command whose function is to convert between human and computer readable formats. We must specify that our input is in SAM format (by default it expects BAM) using the -S option. We must also say that we want the output to be BAM (by default it produces BAM) with the -b option. SAMTOOLS follows the UNIX convention of sending its output to the UNIX STDOUT, so we need to use a redirect operator (“>”) to create a BAM file from the output. http://quinlanlab.org/tutorials/samtools/samtools.html#converting-sam-to-bam-with-samtools-view
+Converting SAM files with SAMTOOLS view command whose function is to convert between human and computer readable formats. We must specify that our input is in SAM format (by default it expects BAM) using the -S option. We must also say that we want the output to be BAM (by default it produces BAM) with the -b option. SAMTOOLS follows the UNIX convention of sending its output to the UNIX STDOUT, so we need to use a redirect operator (“>”) to create a BAM file from the output. Note that I subdivided my samples in two groups, which I refer to as "bacth1" and "batch2", to speed things up.
+
+For more info: http://quinlanlab.org/tutorials/samtools/samtools.html#converting-sam-to-bam-with-samtools-view
+
 `
 samtools view -S -b sample.sam > sample.bam
 `
 **-S**: specifies that the input file is a sam file
+
 **-b**: species that we want to produce a bam file
+
 **>**: denotes where to store the output bam file. 
 
 ## Convert Batch1 
