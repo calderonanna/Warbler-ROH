@@ -7,6 +7,7 @@ For more info: http://quinlanlab.org/tutorials/samtools/samtools.html#converting
 `
 samtools view -S -b sample.sam > sample.bam
 `
+
 **-S**: specifies that the input file is a sam file
 
 **-b**: species that we want to produce a bam file
