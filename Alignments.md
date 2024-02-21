@@ -26,6 +26,7 @@ We will be using bowtie2 with a loop to align our reads to the Myrtle Warbler re
 **-2**: file containing mate 2 reads
 
 **-U**: comma-separated list of files containing unpaired reads to be aligned
+
 **-S**: the output alignment in SAM format. 
 
 **>&**: the pathway for where to store log output for the alignment
