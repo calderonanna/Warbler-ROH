@@ -32,13 +32,6 @@ nano WarblerROH_trim.bash
 set -ue
 
 for  i  in `cat ~/SzpiechLab/abc6435/Scripts/warbler_id_list.txt`; do echo " /storage/work/dut374/bin/adapterremoval-2.1.7/build/AdapterRemoval --file1 /storage/home/abc6435/SzpiechLab/abc6435/WarblerROH/${i}/${i}_R1.fastq.gz --file2 /storage/home/abc6435/SzpiechLab/abc6435/WarblerROH/${i}/${i}_R2.fastq.gz --collapse --trimns --minlength 20 --qualitybase 33 --gzip --basename /storage/home/abc6435/SzpiechLab/abc6435/WarblerROH/${i}/${i}_trimmed"; done | parallel -j20
-
-
-/storage/work/dut374/bin/adapterremoval-2.1.7/build/AdapterRemoval --file1 split_reads.1.fq.gz --file2 split_reads.2.fq.gz --mate-separator / --collapse --trimns --minlength 20 --qualitybase 33 --gzip --basename /gpfs/group/dut374/default/johanna/ybch/ybch_trimmed
-
-163_r1 --> @NB551436:220:HTH3YBGXH:1:11101:23579:1098 1:N:0:CAGATC
-163_r2 --> @NB551436:220:HTH3YBGXH:1:11101:8669:1100 2:N:0:CAGATC
-
 ------------------------------------------END-OF-SCRIPT---------------------------------------------------
 <CTRL O + Enter>
 <CTRL X>
