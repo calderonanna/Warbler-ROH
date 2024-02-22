@@ -23,8 +23,7 @@ python extractDP.py ruticilla_ExHet.vcf.gz > /storage/home/abc6435/work/ruticill
 qsub Calculate_DP.bash
 ```
 
-#### In R Studio
-Calculate DP Thresholds in R for the three species
+In R Studio, calculating the DP thresholds for the three species
 ```r
 cit_dp <- as.data.frame(read.table("/Users/abc6435/Desktop/citrina_DP.txt"))
 cit_dp <- rename(cit_dp, POS=POS, c262=V5, c2871=V6, c104049=V7, 
@@ -41,7 +40,7 @@ quantile(cit_dp$cSE25T02, probs = c(0.05, 0.95))
 #MIN DP: 6
 ```
 
-#### Filtering individual genotypes based on DP thresholds
+Now applying filter 1 to individual genotypes based on DP thresholds
 ```bash 
 nano genotype_DP.bash
 ------------------------------------------------------NANO------------------------------------------------
