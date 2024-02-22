@@ -67,10 +67,6 @@ qsub genotype_DP.bash
 ## Filter 2: Filter GQ
 Genotypes with quality scores less than 20 were set to missing. 
 ```bash
-#test(pass)
-bcftools filter test_citrina_gtDP.vcf.gz -e 'FMT/GQ<20' -S . -Oz -o test_citrina_gtGQ.vcf.gz
-
-#Execute Filter
 nano genotypeGQ_.bash
 ------------------------------------------------------NANO------------------------------------------------
 #!/bin/bash
@@ -92,10 +88,5 @@ bcftools filter ~/SzpiechLab/abc6435/WarblerROH/vcf/ruticilla_gtDP.vcf.gz -e 'FM
 qsub genotype_GQ.bash
 ```
 ## Filter 3: Allele Balance (Skipped)
-Finally, heterozygous genotypes required an allele balance (ratio of reads containing the reference allele out of total reads in individuals called as heterozygous) between 0.23 and 0.76. Note: This step was skipped because I do not have AB in my vcf header. Will go back to the GATK steps and ask for these statistics. 
-```bash
-
- bcftools view -g het -i  "AB>0.25 && AB < 0.75" test_citrina_gtGQ.vcf.gz
-
-``` 
+Finally, heterozygous genotypes required an allele balance (ratio of reads containing the reference allele out of total reads in individuals called as heterozygous) between 0.23 and 0.76. Note: This step was skipped because I do not have AB in my vcf header. 
 
