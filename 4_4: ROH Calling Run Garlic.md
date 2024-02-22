@@ -29,8 +29,12 @@ GARLIC will generate 5 files:  *.110SNPs.kde, *.error, *.freq.gz, *.log, *.roh.b
 Defining the size bounds as 1000000 2000000 3000000 4000000 5000000, GARLIC will produce 6 categories (A,B,C,D,E,F)
 
 <---1MB---2MB---3MB---4MB---5MB--->
-
-___A__|__B__|__C__|__D__|__E__|__F___
+A: ROH < 1Mb
+B: 1Mb < ROH < 2Mb
+C: 2Mb < ROH < 3Mb
+D: 3Mb < ROH < 4Mb
+E: 4Mb < ROH<  5Mb
+F: 5Mb < ROH
 
 ## ROH Thresholds Fixed
 ```bash
