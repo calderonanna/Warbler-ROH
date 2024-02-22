@@ -2,11 +2,8 @@
 # VCF Filtering Sites by Missing GT
 ## 1.  VCF Filtering Sites by Missing GT
 Filtering Sites by Species based on missing GT thresholds. Include any sites with less than 3 missing GT
-```bash 
-#test(pass)
-bcftools view -i 'N_MISSING<3' test_citrina_gtGQ.vcf.gz -Oz -o 
 
-#Execute Filter
+```bash 
 nano filter_missingGT.bash
 ------------------------------------------------------NANO------------------------------------------------
 #!/bin/bash
