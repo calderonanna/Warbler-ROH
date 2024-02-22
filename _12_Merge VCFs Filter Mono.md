@@ -15,13 +15,7 @@ Zach recombined the following files `kirtlandii_filtered.vcf.gz`, `citrina_filte
 ## Filter Monomorphic sites from merged vcf files
 ```bash 
 qsub -A zps5164_a_g_sc_default -l feature=rhel7 -l walltime=10:00:00 -l nodes=1:ppn=1 -l mem=100gb -I
+
 cd SzpiechLab/abc6435/WarblerROH/vcf/Setophaga/
 bcftools view setophaga_filtered_isec.vcf.gz -c 1:minor -Oz -o setophaga_filtered_isec_nomono.vcf.gz
-
-#Count Number of Sites
-cat setophaga_filtered_isec_nomono.vcf | cut -f 1 | grep -v '^#' | wc -l
-#output: 50701237
 ```
-### Note
-To only look at sites where all samples are either AA or RR
-`bcftools view -i 'COUNT(GT="AA")=N_SAMPLES' header.vcf | wc -l`
