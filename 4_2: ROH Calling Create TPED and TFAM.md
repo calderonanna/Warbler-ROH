@@ -16,7 +16,6 @@ To run Garlic, the first column of the tfam file must consist of the individuals
 `awk '$1="pop_name"' path/input.tfam > path/output.tfam`
 
 ```bash
-#Execute Command
 nano create_tped_tfam.bash
 ------------------------------------------------------NANO------------------------------------------------
 #!/bin/bash
