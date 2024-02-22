@@ -60,8 +60,6 @@ First concatenate all into one text file then use nano to fixe the column header
 ```bash
 cat *roh_sum* > ROH_SUM.txt
 nano ROH_SUM.txt
-
-rsync abc6435@submit.aci.ics.psu.edu:/storage/home/abc6435/SzpiechLab/abc6435/WarblerROH/garlic/ROH_SUM.txt /Users/abc6435/Desktop/WarblerROH/data
 ```
 
  
