@@ -26,10 +26,3 @@ sed 's/ \+/,/g' ruticilla_filtered_isec_nomono_monomorphic.txt > ruticilla_filte
 ```
 
 ## Download CSV into Local Computer
-```bash
-mkdir ~/SzpiechLab/abc6435/WarblerROH/vcf/species/CSV
-mv *csv CSV
-
-#In your local terminal
-scp -r abc6435@submit.hpc.psu.edu:/storage/home/abc6435/SzpiechLab/abc6435/WarblerROH/vcf/species/CSV /Users/abc6435/Desktop/WROH/data
-```
