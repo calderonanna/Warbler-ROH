@@ -30,8 +30,8 @@ bcftools view ruticilla_filtered_isec_nomono.vcf.gz -c 1:minor -Oz -o ruticilla_
 
 
 ## Generate Monomorphic Data  Data Per Species
-https://www.seqanswers.com/forum/bioinformatics/bioinformatics-aa/42970-bcftools-will-not-filter-fixed-sites
-The obscure forum that saved our lives. 
+The obscure forum that saved our lives: https://www.seqanswers.com/forum/bioinformatics/bioinformatics-aa/42970-bcftools-will-not-filter-fixed-sites
+
 ```bash
 salloc -N 1 -n 1 --mem-per-cpu=100GB -t 5:00:00
 
