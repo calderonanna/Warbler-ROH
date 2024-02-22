@@ -33,7 +33,7 @@ ls bin
 file sift4g
 #[output] sift4g: ELF 64-bit LSB executable, x86-64, version 1 (GNU/Linux), dynamically linked (uses shared libs), BuildID[sha1]=03d91ee11887a6505e3abd30d66b77db6714eb05, for GNU/Linux 2.6.32, not stripped
 ```
-✎Note✎: Make sure to write down the pathway to your sift program. You will need this later in Step1d when you write your configuration files. For me, the pathway is `SIFT4G_PATH=~/SzpiechLab/abc6435/WarblerROH/SIFT4G/BuildSIFT/sift4g/bin/sift4g`
+✎Note✎: Make sure to write down the pathway to your sift program. You will need this later when you write your configuration files. For me, the pathway is `SIFT4G_PATH=~/SzpiechLab/abc6435/WarblerROH/SIFT4G/BuildSIFT/sift4g/bin/sift4g`
 
 ## Installing Perl Modules
 **Helpful Threads for installing perl modules:** 
