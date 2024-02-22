@@ -5,12 +5,8 @@ https://github.com/szpiech/garlic
 
 ## 1. Creating tgls files 
 We need to extract the genotype quality for each site and each genotype. The tgls files will be generated from the zipped vcf files using a python script that Zach wrote. The tgls file extracts the genotype probability and gives a per genotype error rate. 
-```bash
-#test(Pass)
-#Necessary to be in the directory with the python script
-./create_tgls_from_vcf.py test_citrina_gtGQ.vcf.gz > test_citrina.tgls
 
-#Execute Command
+```bash
 nano create_tgls.bash
 ------------------------------------------------------NANO------------------------------------------------
 #!/bin/bash
