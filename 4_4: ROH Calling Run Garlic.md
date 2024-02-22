@@ -26,6 +26,7 @@ GARLIC will generate 5 files:  *.110SNPs.kde, *.error, *.freq.gz, *.log, *.roh.b
 	
 **NOTE ABOUT SIZE BOUNDS** 
   A      |		B	   | 	C	   |	D	   | 	E     | 	F
+  
 <---1MB---2MB---3MB---4MB---5MB--->
 
 ## ROH Thresholds Fixed
