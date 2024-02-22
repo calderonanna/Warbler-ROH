@@ -1,7 +1,7 @@
 # SIFT 4G Database: Splitting
 Now that we have a copy of annotations file and our reference genome, we are going to split these files by chromosomes. The reason for this is to speed up the process of building the database. Instead of making one big database for the entire genome, which will take way too long, we will make as many "mini" databases as there are chromosomes and then fuse all those into one coherent database at the very end. 
 
-## Split Annotations File 🔖
+## Split Annotations File 
 ✎Note✎: When you get to the step where you run SIFT, you have to zip up the .gtf files. I do later down the line.
 
 ```bash
